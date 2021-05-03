@@ -1,14 +1,16 @@
 import constants
+import copy
 
 print("BASKETBALL TEAM STATS TOOL") 
 
 def convert_height():
-    for player in constants.PLAYERS:
+    for player in formatted_list:
         player["height"].split()
         player["height"] = player["height"][0:2]
+        player["height"] = int(player["height"])
 
 def convert_experiences():
-    for player in constants.PLAYERS:
+    for player in formatted_list:
         if player["experience"] == "YES":
             player["experience"] = True
         else:
@@ -50,9 +52,9 @@ def player_assign():
     global Panthers
     global Bandits
     global Warriors
-    Panthers =  constants.PLAYERS[0::3]
-    Bandits = constants.PLAYERS[1::3]
-    Warriors = constants.PLAYERS[2::3]
+    Panthers =  formatted_list[0::3]
+    Bandits = formatted_list[1::3]
+    Warriors = formatted_list[2::3]
 
 def team_status(team_option):
     experienced_count = 0
@@ -85,8 +87,8 @@ def team_status(team_option):
     print(f"Total inexperienced players: {inexperienced_count}")
 
     for player in team_list:
-        player_height = int(player["height"])
-        height.append(player_height)
+        player_height = []
+        height.append(player["height"])
         total_height = sum(height)
         average_height = total_height / len(team_list)
     print(f"Average height of players: {average_height}")
@@ -116,6 +118,7 @@ def end_tool():
     print("-"*24)
 
 if __name__ == "__main__":
+    formatted_list = copy.deepcopy(constants.PLAYERS)
     player_assign()
     convert_height()
     convert_experiences()
